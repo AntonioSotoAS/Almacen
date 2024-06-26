@@ -3,8 +3,6 @@ package com.almacen.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.Date;
-
 @Entity
 @Data
 public class Usuario {
@@ -12,24 +10,20 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idUsuario;
 
-    @OneToOne
-    @JoinColumn(name = "id_persona", unique = true, nullable = false)
-    private Persona persona;
+    @Column(length = 18, nullable = false)
+    private String username;
 
-    private String nameUser;
+    @Column(length = 15, nullable = false)
+    private String clave;
 
-    private String pass;
-
+    @Column(length = 12, nullable = false)
     private String rol;
 
-    private Date fechaNacimiento;
-
-    private char sexo;
-
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private Estado estado;
 
     public enum Estado {
-        Activo, Desactivo
+        HABILITADO, DESHABILITADO
     }
 }

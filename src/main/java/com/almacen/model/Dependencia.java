@@ -5,13 +5,16 @@ import lombok.Data;
 
 @Entity
 @Data
-public class Proveedor {
+public class Dependencia {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idProveedor;
+    private Integer idDependencia;
+
+    @Column(nullable = false, length = 120)
+    private String jefeDependencia;
 
     @Column(nullable = false, length = 50)
-    private String nombreProv;
+    private String nombreDependencia;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)

@@ -12,20 +12,32 @@ public class Producto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idProducto;
 
-    private String nombre;
-
-    private BigDecimal precio;
+    @ManyToOne
+    @JoinColumn(name = "id_marca", nullable = false)
+    private Marca marca;
 
     @ManyToOne
     @JoinColumn(name = "id_categoria", nullable = false)
     private Categoria categoria;
 
-    private String unidMedida;
+    @ManyToOne
+    @JoinColumn(name = "id_unimed", nullable = false)
+    private UnidadMedida unidadMedida;
+
+    @Column(nullable = false, length = 8)
+    private String cod;
+
+    @Column(nullable = false, length = 80)
+    private String descripcion;
+
+    @Column(precision = 8, scale = 3)
+    private BigDecimal precio;
 
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private Estado estado;
 
     public enum Estado {
-        Activo, Desactivo
+        HABILITADO, DESHABILITADO
     }
 }

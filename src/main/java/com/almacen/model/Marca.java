@@ -5,11 +5,11 @@ import lombok.Data;
 
 @Entity
 @Data
-public class Categoria {
+public class Marca {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idCategoria;
+    private Integer idMarca;
 
     @Column(nullable = false, length = 20)
-    private String nombreCategoria;
+    private String nombreMarca;
 }

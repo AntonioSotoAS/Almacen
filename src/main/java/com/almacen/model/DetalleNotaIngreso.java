@@ -3,20 +3,36 @@ package com.almacen.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.math.BigDecimal;
+
 @Entity
 @Data
 public class DetalleNotaIngreso {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idDetailNotIng;
+    private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "id_notaIngreso", nullable = false)
+    @JoinColumn(name = "id_nota_ing", nullable = false)
     private NotaIngreso notaIngreso;
 
-    @ManyToOne
-    @JoinColumn(name = "id_Producto", nullable = false)
-    private Producto producto;
-
+    @Column(nullable = false)
     private Integer cantidad;
+
+    @Column(nullable = false, precision = 8, scale = 3)
+    private BigDecimal precio;
+
+    @Column(nullable = false, precision = 8, scale = 3)
+    private BigDecimal igv;
+
+    @Column(nullable = false, precision = 12, scale = 3)
+    private BigDecimal total;
+
+    @ManyToOne
+    @JoinColumn(name = "id_movimiento", nullable = false)
+    private Movimientos movimiento;
+
+    @ManyToOne
+    @JoinColumn(name = "id_producto", nullable = false)
+    private Producto producto;
 }

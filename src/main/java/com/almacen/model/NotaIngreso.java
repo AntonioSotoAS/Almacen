@@ -10,21 +10,30 @@ import java.util.Date;
 public class NotaIngreso {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idNotaIngreso;
+    private Integer idNotaIng;
 
-    @ManyToOne
-    @JoinColumn(name = "id_documento", nullable = false)
-    private Documento documento;
+    @Column(nullable = false, length = 25)
+    private String dctoRefe;
 
-    private String dctoReferecica;
+    @Temporal(TemporalType.DATE)
+    @Column(nullable = false)
+    private Date fecha;
 
-    private Date fechaIni;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private TipoMov tipoMov;
 
-    private Date fechaTipoMov;
+    @Column(nullable = false, length = 55)
+    private String ocompra;
 
-    private String tipoMov;
+    @Column(nullable = false, length = 20)
+    private String nguia;
 
     @ManyToOne
     @JoinColumn(name = "id_proveedor", nullable = false)
     private Proveedor proveedor;
+
+    public enum TipoMov {
+        IMPORTACION, REGULARIZACION
+    }
 }
